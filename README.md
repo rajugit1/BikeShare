@@ -1,9 +1,44 @@
-# Lending Club Case study
-> You work for a consumer finance company which specialises in lending various types of loans to urban customers. When the company receives a loan application, the company has to make a decision for loan approval based on the applicant’s profile. Two types of risks are associated with the bank’s decision:
+# Bike Sharing Case Study
+A bike-sharing system is a service in which bikes are made available for shared use to individuals on a short term basis for a price or free. Many bike share systems allow people to borrow a bike from a "dock" which is usually computer-controlled wherein the user enters the payment information, and the system unlocks it. This bike can then be returned to another dock belonging to the same system.
 
-If the applicant is likely to repay the loan, then not approving the loan results in a loss of business to the company
 
-If the applicant is not likely to repay the loan, i.e. he/she is likely to default, then approving the loan may lead to a financial loss for the company
+A US bike-sharing provider BoomBikes has recently suffered considerable dips in their revenues due to the ongoing Corona pandemic. The company is finding it very difficult to sustain in the current market scenario. So, it has decided to come up with a mindful business plan to be able to accelerate its revenue as soon as the ongoing lockdown comes to an end, and the economy restores to a healthy state. 
+
+
+In such an attempt, BoomBikes aspires to understand the demand for shared bikes among the people after this ongoing quarantine situation ends across the nation due to Covid-19. They have planned this to prepare themselves to cater to the people's needs once the situation gets better all around and stand out from other service providers and make huge profits.
+
+
+They have contracted a consulting company to understand the factors on which the demand for these shared bikes depends. Specifically, they want to understand the factors affecting the demand for these shared bikes in the American market. The company wants to know:
+
+Which variables are significant in predicting the demand for shared bikes.
+How well those variables describe the bike demands
+Based on various meteorological surveys and people's styles, the service provider firm has gathered a large dataset on daily bike demands across the American market based on some factors. 
+
+
+Business Goal:
+Data Preparation:
+
+You can observe in the dataset that some of the variables like 'weathersit' and 'season' have values as 1, 2, 3, 4 which have specific labels associated with them (as can be seen in the data dictionary). These numeric values associated with the labels may indicate that there is some order to them - which is actually not the case (Check the data dictionary and think why). So, it is advisable to convert such feature values into categorical string values before proceeding with model building. Please refer the data dictionary to get a better understanding of all the independent variables.
+ 
+You might notice the column 'yr' with two values 0 and 1 indicating the years 2018 and 2019 respectively. At the first instinct, you might think it is a good idea to drop this column as it only has two values so it might not be a value-add to the model. But in reality, since these bike-sharing systems are slowly gaining popularity, the demand for these bikes is increasing every year proving that the column 'yr' might be a good variable for prediction. So think twice before dropping it. 
+ 
+
+Model Building
+
+In the dataset provided, you will notice that there are three columns named 'casual', 'registered', and 'cnt'. The variable 'casual' indicates the number casual users who have made a rental. The variable 'registered' on the other hand shows the total number of registered users who have made a booking on a given day. Finally, the 'cnt' variable indicates the total number of bike rentals, including both casual and registered. The model should be built taking this 'cnt' as the target variable.
+
+
+Model Evaluation:
+When you're done with model building and residual analysis and have made predictions on the test set, just make sure you use the following two lines of code to calculate the R-squared score on the test set.
+
+ 
+
+from sklearn.metrics import r2_score
+r2_score(y_test, y_pred)
+ 
+
+where y_test is the test data set for the target variable, and y_pred is the variable containing the predicted values of the target variable on the test set.
+Please don't forget to perform this step as the R-squared score on the test set holds some marks. The variable names inside the 'r2_score' function can be different based on the variable names you have chosen.
 
 
 ## Table of Contents
@@ -15,36 +50,14 @@ If the applicant is not likely to repay the loan, i.e. he/she is likely to defau
 <!-- You can include any other section that is pertinent to your problem -->
 
 ## General Information
-In this case study, you will use EDA to understand how consumer attributes and loan attributes influence the tendency of default.
-When a person applies for a loan, there are two types of decisions that could be taken by the company:
-Loan accepted: If the company approves the loan, there are 3 possible scenarios described below:
-Fully paid: Applicant has fully paid the loan (the principal and the interest rate)
-Current: Applicant is in the process of paying the instalments, i.e. the tenure of the loan is not yet completed. These candidates are not labelled as 'defaulted'.
-Charged-off: Applicant has not paid the instalments in due time for a long period of time, i.e. he/she has defaulted on the loan 
-
-Loan rejected: The company had rejected the loan (because the candidate does not meet their requirements etc.). Since the loan was rejected, there is no transactional history of those applicants with the company and so this data is not available with the company (and thus in this dataset)
- Business Objectives
-This company is the largest online loan marketplace, facilitating personal loans, business loans, and financing of medical procedures. Borrowers can easily access lower interest rate loans through a fast online interface. 
-
-Like most other lending companies, lending loans to ‘risky’ applicants is the largest source of financial loss (called credit loss). Credit loss is the amount of money lost by the lender when the borrower refuses to pay or runs away with the money owed. In other words, borrowers who default cause the largest amount of loss to the lenders. In this case, the customers labelled as 'charged-off' are the 'defaulters'. 
-
-If one is able to identify these risky loan applicants, then such loans can be reduced thereby cutting down the amount of credit loss. Identification of such applicants using EDA is the aim of this case study.
-
-In other words, the company wants to understand the driving factors (or driver variables) behind loan default, i.e. the variables which are strong indicators of default.  The company can utilise this knowledge for its portfolio and risk assessment. 
-
-To develop your understanding of the domain, you are advised to independently research a little about risk analytics (understanding the types of variables and their significance should be enough).
+You are required to model the demand for shared bikes with the available independent variables. It will be used by the management to understand how exactly the demands vary with different features. They can accordingly manipulate the business strategy to meet the demand levels and meet the customer's expectations. Further, the model will be a good way for management to understand the demand dynamics of a new market. 
 
 Dataset provided by Upgrad
-Also available at "https://raw.githubusercontent.com/rajugit1/LoanEDA/master/loan.csv"
+Also available at https://github.com/rajugit1/BikeShare/blob/master/day.csv
 Data Dictionary available in the same path
 
 ## Conclusions
-Default Rate more in small business
-Default Rate more with 10+ Years experienced
-Default Rate more in states like  NE, NV , AK
-Loan Terms High between 25 to 45 Months
-Defaulters more in 60 months term.
-Delinquency check important for loan processing along with Annual Income, Emp length
+
 
 ## Technologies Used
 import pandas as pd
@@ -62,12 +75,12 @@ plotly version: 5.17.0
 
 
 ## Acknowledgements
-- References -- Kaggle,Upgrad
+- References -- Upgrad,pluralsight,udemy
 
 
 
 ## Contact
-Created by [[@githubusername](https://github.com/rajugit1)] - feel free to contact me!
+Created by [(https://github.com/rajugit1)] - feel free to contact me!
 
 
 
